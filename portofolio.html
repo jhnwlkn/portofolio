@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>John Wilken Christopher — Data Analyst</title>
+<meta name="description" content="Portofolio profesional John Wilken Christopher, Data Analyst di Bank Mandiri — SQL, dashboard, dan manajemen proyek berbasis data.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;
+    --surface:#f5f6f8;
+    --surface-strong:#eef1f5;
+    --border:#e1e4ea;
+    --ink:#161a24;
+    --ink-muted:#5c6577;
+    --accent:#1f3a68;
+    --accent-strong:#15294d;
+    --accent-soft:#eaf0f8;
+    --on-accent:#ffffff;
+    --radius:4px;
+    --font:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+    color-scheme:light;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#0f1218; --surface:#161a22; --surface-strong:#1c212b; --border:#2a3040;
+      --ink:#e8eaf0; --ink-muted:#9aa3b8; --accent:#7fa0d4; --accent-strong:#3f68ab;
+      --accent-soft:#1b2636; --on-accent:#ffffff; color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0f1218; --surface:#161a22; --surface-strong:#1c212b; --border:#2a3040;
+    --ink:#e8eaf0; --ink-muted:#9aa3b8; --accent:#7fa0d4; --accent-strong:#3f68ab;
+    --accent-soft:#1b2636; --on-accent:#ffffff; color-scheme:dark;
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px));}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.65;-webkit-font-smoothing:antialiased;}
+  body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:101;background:var(--bg);}
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  :focus-visible{outline:2px solid var(--accent-strong);outline-offset:3px;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;}
+  }
+
+  .container{max-width:1080px;margin:0 auto;padding:0 1.5rem;}
+  section{padding:5rem 0;}
+  h1,h2,h3{margin:0;font-weight:700;letter-spacing:-0.01em;}
+  h2{font-size:1.9rem;margin-bottom:.75rem;}
+  .section-lead{color:var(--ink-muted);max-width:60ch;margin:0 0 2.75rem;}
+  p{margin:0 0 1rem;}
+
+  /* Header */
+  header.site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:100;background:var(--bg);border-bottom:1px solid var(--border);}
+  .nav-row{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.5rem;max-width:1080px;margin:0 auto;}
+  .brand{display:flex;align-items:center;gap:.65rem;text-decoration:none;}
+  .brand-mark{width:34px;height:34px;border-radius:var(--radius);background:var(--accent-strong);color:var(--on-accent);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem;flex-shrink:0;}
+  .brand-name{font-weight:700;font-size:.95rem;color:var(--ink);white-space:nowrap;}
+  .nav-links{list-style:none;display:flex;gap:1.75rem;margin:0;padding:0;}
+  .nav-links a{text-decoration:none;color:var(--ink-muted);font-size:.9rem;font-weight:500;transition:color .15s;}
+  .nav-links a:hover{color:var(--accent-strong);}
+  .nav-toggle{display:none;flex-direction:column;gap:4px;background:none;border:none;padding:.5rem;cursor:pointer;}
+  .nav-toggle span{display:block;width:22px;height:2px;background:var(--ink);}
+
+  /* Hero */
+  .hero{padding:5.5rem 0 4.5rem;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:38px 38px;background-position:center -1px;position:relative;}
+  .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 20% 30%,var(--bg) 10%,transparent 65%),radial-gradient(ellipse at 90% 80%,var(--bg) 5%,transparent 55%);pointer-events:none;}
+  .hero-inner{position:relative;display:grid;grid-template-columns:auto 1fr;gap:2.5rem;align-items:center;}
+  .avatar{width:132px;height:132px;border-radius:50%;overflow:hidden;background:var(--accent-soft);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .avatar img{width:100%;height:100%;object-fit:cover;}
+  .avatar.avatar-fallback{font-weight:700;font-size:2.1rem;color:var(--accent-strong);}
+  .eyebrow-loc{color:var(--ink-muted);font-size:.88rem;margin-bottom:.6rem;}
+  .hero h1{font-size:clamp(2rem,4.5vw,2.9rem);line-height:1.15;margin-bottom:.9rem;}
+  .hero-tagline{color:var(--ink-muted);font-size:1.1rem;max-width:52ch;margin-bottom:1.9rem;}
+  .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;}
+
+  .btn{display:inline-block;padding:.85rem 1.7rem;border-radius:var(--radius);font-weight:600;font-size:.92rem;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:background .18s,border-color .18s,color .18s;}
+  .btn-primary{background:var(--accent-strong);border-color:var(--accent-strong);color:var(--on-accent);}
+  .btn-primary:hover{background:var(--accent);border-color:var(--accent);}
+  .btn-outline{background:transparent;border-color:var(--border);color:var(--ink);}
+  .btn-outline:hover{border-color:var(--accent-strong);color:var(--accent-strong);}
+
+  /* About */
+  .about-section{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .about-text{max-width:68ch;font-size:1.05rem;color:var(--ink);}
+
+  /* Timeline */
+  .timeline{list-style:none;margin:0;padding:0;border-left:2px solid var(--border);}
+  .timeline-item{position:relative;padding:0 0 2.25rem 2rem;}
+  .timeline-item:last-child{padding-bottom:0;}
+  .timeline-marker{position:absolute;left:-7px;top:.35rem;width:12px;height:12px;border-radius:50%;background:var(--accent-strong);border:3px solid var(--bg);}
+  .timeline-period{display:inline-block;font-size:.82rem;font-weight:600;color:var(--accent-strong);margin-bottom:.3rem;}
+  .timeline-content h3{font-size:1.1rem;margin-bottom:.15rem;}
+  .timeline-org{color:var(--ink-muted);margin:0;font-size:.95rem;}
+
+  /* Projects */
+  .projects-section{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;}
+  .project-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem;display:flex;flex-direction:column;transition:border-color .18s,transform .18s;}
+  .project-card:hover{border-color:var(--accent-strong);transform:translateY(-3px);}
+  .project-card h3{font-size:1.08rem;margin-bottom:.6rem;}
+  .project-card p{color:var(--ink-muted);font-size:.92rem;flex-grow:1;}
+  .tags{margin:.6rem 0;}
+  .tag{display:inline-block;background:var(--accent-soft);color:var(--accent-strong);font-size:.74rem;font-weight:600;padding:.3rem .6rem;border-radius:3px;margin:0 .35rem .35rem 0;}
+  .project-role{font-size:.85rem;color:var(--ink-muted);margin-bottom:.4rem;}
+  .project-link{align-self:flex-start;color:var(--accent-strong);font-weight:600;font-size:.88rem;text-decoration:none;border-bottom:1px solid transparent;margin-top:.3rem;}
+  .project-link:hover{border-bottom-color:var(--accent-strong);}
+
+  /* Skills */
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2.25rem;}
+  .skill-col h3{font-size:1rem;padding-bottom:.6rem;border-bottom:2px solid var(--accent-strong);margin-bottom:.9rem;}
+  .skill-col ul{list-style:none;margin:0;padding:0;}
+  .skill-col li{padding:.55rem 0;border-bottom:1px solid var(--border);color:var(--ink-muted);font-size:.95rem;}
+  .skill-col li:last-child{border-bottom:none;}
+
+  /* Contact */
+  .contact-section{background:var(--surface);border-top:1px solid var(--border);}
+  .contact-methods{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.75rem;}
+  .contact-form{max-width:520px;display:grid;gap:1.1rem;}
+  .field label{display:block;font-size:.85rem;font-weight:600;margin-bottom:.4rem;color:var(--ink);}
+  .field input,.field textarea{width:100%;padding:.75rem .9rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg);color:var(--ink);font-family:var(--font);font-size:.95rem;}
+  .field input:focus,.field textarea:focus{border-color:var(--accent-strong);outline:none;}
+  .field textarea{resize:vertical;min-height:110px;}
+  #form-status{font-size:.88rem;color:var(--accent-strong);min-height:1.2em;}
+
+  footer{padding:2.5rem 0;text-align:center;color:var(--ink-muted);font-size:.85rem;}
+
+  @media (max-width:760px){
+    .nav-links{position:absolute;top:100%;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--border);flex-direction:column;gap:0;display:none;padding:.5rem 1.5rem 1rem;}
+    .nav-links.open{display:flex;}
+    .nav-links a{padding:.7rem 0;border-bottom:1px solid var(--border);}
+    .nav-links li:last-child a{border-bottom:none;}
+    .nav-toggle{display:flex;}
+    .hero-inner{grid-template-columns:1fr;text-align:left;}
+    section{padding:3.5rem 0;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="nav-row">
+    <a href="#beranda" class="brand">
+      <span class="brand-mark">JWC</span>
+      <span class="brand-name">John Wilken Christopher</span>
+    </a>
+    <button class="nav-toggle" aria-label="Buka menu" aria-expanded="false" id="navToggle">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#beranda">Beranda</a></li>
+      <li><a href="#tentang">Tentang</a></li>
+      <li><a href="#pengalaman">Pengalaman</a></li>
+      <li><a href="#proyek">Proyek</a></li>
+      <li><a href="#keahlian">Keahlian</a></li>
+      <li><a href="#kontak">Kontak</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+  <section id="beranda" class="hero">
+    <div class="container hero-inner">
+      <div class="avatar" id="avatar">
+        <img id="profile-photo" alt="Foto profil John Wilken Christopher">
+      </div>
+      <div>
+        <p class="eyebrow-loc">South Jakarta, Indonesia</p>
+        <h1>John Wilken Christopher</h1>
+        <p class="hero-tagline">Data Analyst &amp; Project Enthusiast | Menjembatani kebutuhan bisnis dengan solusi berbasis data</p>
+        <div class="hero-actions">
+          <a href="#proyek" class="btn btn-primary">Lihat Portofolio</a>
+          <a href="#kontak" class="btn btn-outline">Hubungi Saya</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tentang" class="about-section">
+    <div class="container">
+      <h2>Tentang Saya</h2>
+      <p class="about-text">Saya seorang data analyst dengan pengalaman langsung mengubah data bisnis mentah menjadi insight melalui SQL, dashboard Excel, dan pelaporan terstruktur. Pengalaman saya mencakup perbankan, startup e-commerce, manajemen proyek, dan data science — memungkinkan saya menjembatani kebutuhan bisnis dengan solusi berbasis teknologi.</p>
+    </div>
+  </section>
+
+  <section id="pengalaman">
+    <div class="container">
+      <h2>Pengalaman</h2>
+      <p class="section-lead">Perjalanan profesional dari data science hingga manajemen proyek dan analisis perbankan.</p>
+      <ol class="timeline">
+        <li class="timeline-item">
+          <span class="timeline-marker"></span>
+          <div class="timeline-content">
+            <span class="timeline-period">Maret 2026 – Sekarang</span>
+            <h3>Data Analyst</h3>
+            <p class="timeline-org">PT Bank Mandiri</p>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <span class="timeline-marker"></span>
+          <div class="timeline-content">
+            <span class="timeline-period">Maret 2025 – September 2025</span>
+            <h3>Project Manager</h3>
+            <p class="timeline-org">TypeLabs Indonesia</p>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <span class="timeline-marker"></span>
+          <div class="timeline-content">
+            <span class="timeline-period">Juli 2025 – September 2025</span>
+            <h3>Operational Staff</h3>
+            <p class="timeline-org">APIK Group Indonesia</p>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <span class="timeline-marker"></span>
+          <div class="timeline-content">
+            <span class="timeline-period">Juni 2024 – Agustus 2024</span>
+            <h3>Data Science Intern</h3>
+            <p class="timeline-org">Badan Pusat Statistik</p>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <span class="timeline-marker"></span>
+          <div class="timeline-content">
+            <span class="timeline-period">Februari 2024 – Juli 2024</span>
+            <h3>Machine Learning Cohort</h3>
+            <p class="timeline-org">Bangkit Academy led by Google, Tokopedia, Gojek, &amp; Traveloka</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="proyek" class="projects-section">
+    <div class="container">
+      <h2>Proyek</h2>
+      <p class="section-lead">Beberapa proyek yang pernah saya kerjakan, dari dashboard internal hingga pengembangan website klien.</p>
+      <div class="projects-grid">
+
+        <article class="project-card">
+          <h3>Dashboard Monitoring Liabilitas &amp; Transaksi</h3>
+          <p>Mengembangkan dashboard monitoring bisnis menggunakan SQL dan Excel untuk mendukung pemantauan kinerja harian, mingguan, bulanan di divisi Liabilities &amp; Transaction.</p>
+          <div class="tags"><span class="tag">SQL Server</span><span class="tag">Excel</span></div>
+          <p class="project-role">Role: Data Analyst</p>
+        </article>
+
+        <article class="project-card">
+          <h3>Digitalisasi Operasional dengan ClickUp</h3>
+          <p>Memimpin digitalisasi operasional perusahaan dengan mengimplementasikan ClickUp sebagai platform manajemen proyek utama, mencakup KPI framework lintas divisi marketing, branding, IT, dan operasional.</p>
+          <div class="tags"><span class="tag">ClickUp</span></div>
+          <p class="project-role">Role: Operational Staff</p>
+        </article>
+
+        <article class="project-card">
+          <h3>Website vivan.co.id</h3>
+          <p>Mengelola proyek pengembangan website end-to-end sebagai Project Manager, mulai dari perencanaan timeline, sprint, QA, hingga menjadi penghubung utama antara klien dan tim developer.</p>
+          <div class="tags"><span class="tag">Project Management</span><span class="tag">QA</span><span class="tag">Client Liaison</span></div>
+          <p class="project-role">Role: Project Manager</p>
+          <a href="https://vivan.co.id" target="_blank" rel="noopener" class="project-link">Kunjungi Situs</a>
+        </article>
+
+        <article class="project-card">
+          <h3>Website robotpowerbank.co.id</h3>
+          <p>Mengelola proyek pengembangan website end-to-end sebagai Project Manager, memastikan kualitas dan ketepatan waktu pengiriman proyek.</p>
+          <div class="tags"><span class="tag">Project Management</span><span class="tag">QA</span><span class="tag">Client Liaison</span></div>
+          <p class="project-role">Role: Project Manager</p>
+          <a href="https://robotpowerbank.co.id" target="_blank" rel="noopener" class="project-link">Kunjungi Situs</a>
+        </article>
+
+        <article class="project-card">
+          <h3>Website gamenindonesia.co.id</h3>
+          <p>Mengelola proyek pengembangan website end-to-end sebagai Project Manager, menjadi penghubung utama antara klien dan tim developer.</p>
+          <div class="tags"><span class="tag">Project Management</span><span class="tag">QA</span><span class="tag">Client Liaison</span></div>
+          <p class="project-role">Role: Project Manager</p>
+          <a href="https://gamenindonesia.co.id" target="_blank" rel="noopener" class="project-link">Kunjungi Situs</a>
+        </article>
+
+        <article class="project-card">
+          <h3>Klasifikasi Teks Kode KBLI</h3>
+          <p>Mengembangkan dan mengevaluasi model klasifikasi teks untuk prediksi kode KBLI menggunakan LSTM, Bi-LSTM, dan FastText pada dataset tekstual skala besar.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Google Colab</span><span class="tag">NLP</span></div>
+          <p class="project-role">Role: Data Science Intern</p>
+        </article>
+
+        <article class="project-card">
+          <h3>Sistem Klasifikasi Riset Berbasis AI</h3>
+          <p>Mendukung pengembangan sistem klasifikasi publikasi universitas berbasis AI melalui web scraping dan preprocessing teks skala besar (cleaning, stemming, stopword removal, language detection).</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Web Scraping</span><span class="tag">NLP</span></div>
+          <p class="project-role">Role: Research Assistant</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="keahlian">
+    <div class="container">
+      <h2>Keahlian</h2>
+      <p class="section-lead">Kombinasi kemampuan analitis, manajerial, dan teknis yang saya kembangkan sepanjang karier.</p>
+      <div class="skills-grid">
+        <div class="skill-col">
+          <h3>Data &amp; Analytics</h3>
+          <ul>
+            <li>SQL</li>
+            <li>Excel</li>
+            <li>Dashboard Reporting</li>
+            <li>Data Visualization</li>
+          </ul>
+        </div>
+        <div class="skill-col">
+          <h3>Project Management</h3>
+          <ul>
+            <li>ClickUp</li>
+            <li>Partner Relationship Management</li>
+            <li>Event Management</li>
+          </ul>
+        </div>
+        <div class="skill-col">
+          <h3>Machine Learning</h3>
+          <ul>
+            <li>TensorFlow</li>
+            <li>Python</li>
+            <li>NLP</li>
+            <li>Text Classification</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontak" class="contact-section">
+    <div class="container">
+      <h2>Kontak</h2>
+      <p class="section-lead">Terbuka untuk diskusi peluang kerja sama, kolaborasi proyek, atau sekadar menyapa.</p>
+
+      <div class="contact-methods">
+        <a href="mailto:johnwilken117@gmail.com" class="btn btn-outline">Email Saya</a>
+        <a href="https://www.linkedin.com/in/johnwilkenchris" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
+        <a href="https://www.instagram.com/jhn_wl" target="_blank" rel="noopener" class="btn btn-outline">Instagram</a>
+      </div>
+
+      <form class="contact-form" id="contactForm">
+        <div class="field">
+          <label for="cf-name">Nama</label>
+          <input type="text" id="cf-name" name="name" required>
+        </div>
+        <div class="field">
+          <label for="cf-email">Email</label>
+          <input type="email" id="cf-email" name="email" required>
+        </div>
+        <div class="field">
+          <label for="cf-message">Pesan</label>
+          <textarea id="cf-message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="justify-self:start;">Kirim Pesan</button>
+        <p id="form-status"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2026 John Wilken Christopher. South Jakarta, Indonesia.</p>
+</footer>
+
+<script>
+  // Path ke folder asset — letakkan foto profil Anda di sini (mis. assets/profile.jpg)
+  const ASSET_PATH = 'assets/';
+
+  const avatar = document.getElementById('avatar');
+  const photo = document.getElementById('profile-photo');
+  photo.src = ASSET_PATH + 'profile.jpg';
+  photo.onerror = function () {
+    photo.remove();
+    avatar.classList.add('avatar-fallback');
+    avatar.textContent = 'JWC';
+  };
+
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', function () {
+    const open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navLinks.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () { navLinks.classList.remove('open'); });
+  });
+
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('form-status');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const message = form.message.value.trim();
+    const subject = encodeURIComponent('Pesan dari Portofolio — ' + name);
+    const body = encodeURIComponent(message + '\n\nBalas ke: ' + email);
+    window.location.href = 'mailto:johnwilken117@gmail.com?subject=' + subject + '&body=' + body;
+    status.textContent = 'Membuka aplikasi email Anda…';
+  });
+</script>
+
+</body>
+</html>
